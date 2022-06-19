@@ -34,6 +34,12 @@ df_train = pd.read_csv('./data/retail_train.zip', compression='zip', sep = ',', 
 df_test = pd.read_csv('./data/retail_test1.zip', compression='zip', sep = ',', encoding = 'utf8')
 
 
+#%%
+
+from lightfm import LightFM
+
+import lightfm
+print(lightfm.__version__)
 
 #%%
 
@@ -96,8 +102,6 @@ data_val_ranker = data_val_ranker[data_val_ranker.user_id.isin(common_users)]
 
 #%%
 
-%%time
-
 recommender = MainRecommender(data_train_matcher)
 
 N_PREDICT = 50 
@@ -111,7 +115,6 @@ result_eval_matcher.columns=[USER_COL, ACTUAL_COL]
 
 #%%
 
-%%time
 result_eval_matcher['own_rec'] = result_eval_matcher[USER_COL].apply(lambda x: recommender.get_own_recommendations(x, N=N_PREDICT))
 
 
