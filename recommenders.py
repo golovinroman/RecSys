@@ -90,8 +90,7 @@ class MainRecommender:
         model = AlternatingLeastSquares(factors=n_factors,
                                         regularization=regularization,
                                         iterations=iterations,
-                                        num_threads=num_threads,
-                                        use_gpu=False)
+                                        num_threads=num_threads)
         model.fit(csr_matrix(user_item_matrix).T.tocsr())
 
         return model
@@ -131,7 +130,7 @@ class MainRecommender:
                                                                     N=N,
                                                                     filter_already_liked_items=False,
                                                                     filter_items=[self.itemid_to_id[999999]],
-                                                                    recalculate_user=False)]
+                                                                    recalculate_user=True)]
 
         res = self._extend_with_top_popular(res, N=N)
 
