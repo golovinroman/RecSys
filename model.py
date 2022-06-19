@@ -33,13 +33,20 @@ pip freeze > requirements.txt
 
 #%%
 
+
+
 path = os.getcwd()
-items_features = pd.read_csv(f'../Project_data/product.csv', sep = ',', encoding = 'utf8')
-user_features = pd.read_csv(f'../Project_data/hh_demographic.csv', sep = ',', encoding = 'utf8')
-df_train = pd.read_csv(f'../Project_data/retail_train.csv', sep = ',', encoding = 'utf8')
+items_features = pd.read_csv('./data/product.zip', compression='zip',sep = ',', encoding = 'utf8')
+user_features = pd.read_csv('./data/hh_demographic.zip', compression='zip',sep = ',', encoding = 'utf8')
+df_train = pd.read_csv('./data/retail_train.zip', compression='zip', sep = ',', encoding = 'utf8')
+df_test = pd.read_csv('./data/retail_test1.zip', compression='zip', sep = ',', encoding = 'utf8')
 
 
 
 
 #%%
 
+
+output = pd.DataFrame()
+
+output.to_csv(f'./recommendations.csv', index=False, sep= ',', encoding = 'utf8')
